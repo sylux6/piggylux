@@ -1,0 +1,25 @@
+---
+const { title = "Portfolio", description = "Digital art by Your Name" } =
+  Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body
+    class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-50"
+  >
+    <slot />
+  </body>
+</html>

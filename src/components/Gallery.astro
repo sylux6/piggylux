@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+const artworks = await getCollection("artworks");
+const PLACEHOLDER = "/placeholder.jpg";
+---
+
+<section id="gallery">
+  <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    {
+      artworks.map((entry) => {
+        const a = entry.data;
+        const coverUrl = a.cover ?? PLACEHOLDER;
+        return (
+          <li class="group" id={entry.id}>
+            <a
+              href={`/art/${entry.slug}`}
+              class="block [transform:translateZ(0)]"
+            >
+              <div class="rounded-pig overflow-hidden border border-piggy-rose/40 shadow-soft will-change-transform transition-transform duration-300 group-hover:-translate-y-1">
+                <img
+                  src={coverUrl}
+                  alt={a.title || "Coming soon"}
+                  loading="lazy"
+                  class="w-full h-auto object-cover"
+                />
+              </div>
+              <div class="mt-2 text-sm opacity-90 flex items-center gap-2">
+                <span>{a.title || "Untitled"}</span>
+                {a.year && <span class="opacity-60">({a.year})</span>}
+              </div>
+            </a>
+          </li>
+        );
+      })
+    }
+  </ul>
+</section>

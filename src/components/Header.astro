@@ -1,0 +1,21 @@
+---
+import PiggyLogo from "./islands/PiggyLogo";
+---
+
+<header class="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+  <a href="/" class="flex items-center gap-3">
+    <PiggyLogo size={40} />
+    <span class="font-semibold tracking-tight">piggylux</span>
+  </a>
+  <nav class="flex gap-4 text-sm opacity-80">
+    <a href="/">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <button id="theme" class="rounded-pig border px-3 py-1 text-sm">Theme</button>
+  <script>
+    const btn = document.getElementById("theme");
+    const root = document.documentElement;
+    btn?.addEventListener("click", () => root.classList.toggle("dark"));
+  </script>
+</header>
